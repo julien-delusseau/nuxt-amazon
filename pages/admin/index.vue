@@ -7,20 +7,20 @@
     </section>
 
     <section>
-      <articles-list is-admin :articles="articles" />
+      <articles-list is-admin :articles="articles" keep-alive />
     </section>
   </div>
 </template>
 
 <script>
-import articles from "~/data/fakers";
 import ArticlesList from "~/components/articles/ArticlesList.vue";
 import CustomButton from "~/components/ui/CustomButton.vue";
 export default {
   name: "AdminView",
   layout: "admin",
   components: { ArticlesList, CustomButton },
-  data() {
+  async asyncData({ $axios }) {
+    const articles = await $axios.$get("http://localhost:8000/articles");
     return { articles };
   },
 };
