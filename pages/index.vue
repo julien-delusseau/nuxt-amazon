@@ -9,9 +9,10 @@ import ArticlesList from "~/components/articles/ArticlesList.vue";
 export default {
   name: "IndexPage",
   components: { ArticlesList },
-  async asyncData({ $axios }) {
-    const articles = await $axios.$get("http://localhost:8000/articles");
-    return { articles };
+  computed: {
+    articles() {
+      return this.$store.getters.getArticles;
+    },
   },
 };
 </script>

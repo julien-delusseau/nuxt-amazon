@@ -14,7 +14,6 @@ export default {
     const loadedArticle = await $axios.$get(
       "http://localhost:8000/articles/" + params.id
     );
-    console.log(loadedArticle);
     return { loadedArticle };
   },
 };
